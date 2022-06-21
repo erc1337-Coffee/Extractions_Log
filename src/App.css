@@ -1,38 +1,128 @@
+html, body, body > div, body > div > div {
+  height: 100%;
+}
+
+@font-face {
+    font-family: 'perfect-dos';
+    src: url('./Perfect DOS VGA 437.woff2') format('woff2'),
+         url('./Perfect DOS VGA 437.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'retro-gaming';
+    src: url('./Retro Gaming.woff2') format('woff2'),
+         url('./Retro Gaming.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'titillium';
+    src: url('./TitilliumWeb-Regular.woff2') format('woff2'),
+         url('./TitilliumWeb-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: auto;
+  width: 4.20vw;
   pointer-events: none;
+  overflow-y: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-body{
+  padding-top: 10vh;
+  height: 90vh;
+}
+
+.App-header, .App-footer {
+  background: url('./RadioactiveWaste.gif') 100%;
+  background-position-x: center;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'retro-gaming';
+  font-weight: 100;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: fit-content;
+}
+.App-footer {
+  color: white;
+  background: #1E1C2C;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "titillium";
+}
+
+.title {
+  display: flex;
+}
+.title_1 {
+  font-family: 'retro-gaming';
+  margin-bottom: auto;
+  margin-top: auto;
+  font-size: 1.337vw;  
+  margin-left: 10vw;
+}
+.title_2 {
+  font-family: 'perfect-dos';
+  margin-bottom: auto;
+  margin-top: auto;
+  margin-left: 1vw;
+  font-size: 1.420vw;  
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1.337vw;
+}
+.theme {
+  height: 3vh;
+  width: auto;
+  cursor: pointer;
+  filter: invert(1);
+}
+
+.content {
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 85vh;
 }
 
-.App-link {
-  color: #61dafb;
+.content_stats, .content_list{
+  border-radius: 25px;
+  width: 95vw;
+  margin: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content_list{
+  height: 65vh;
+}
+
+.content_stats{
+  height: 10vh;
 }
