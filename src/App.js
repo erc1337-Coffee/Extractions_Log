@@ -4,7 +4,7 @@ import Front from "./pages/front/Front.jsx";
 
 function App() {
   return (
-    <div className="w-[1300px] justify-center place-content-center mx-auto">
+    <div className="max-w-[1300px] justify-center place-content-center mx-auto">
       <Front className="mx-auto" />
     </div>
   );
