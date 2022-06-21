@@ -101,10 +101,14 @@ function Front() {
             )}  */}
           </div>
         </header>
-        <img
-          src={Reactor}
-          className="brightness-75 lg:max-w-[1300px] mt-[60px]"
-        />
+        <div className="brightness-75 lg:max-w-[1300px] mt-[60px] relative">
+          <img src={Reactor} />
+          <p className="absolute right-2 bottom-2 gamer tracking-wide text-[#ffffff80] lg:text-sm text-[9px]">
+            {" "}
+            © 2021 KAIJUKINGZ ALL RIGHTS RESERVED.
+          </p>
+        </div>
+
         <div className="mt-[70px]">
           <div className="p-5 h-screen">
             <div className="w-full rounded-sm lg:text-4xl gamer flex mb-10 tracking-widest text-[#2C9370] flex-col text-left">
