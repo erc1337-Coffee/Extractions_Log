@@ -10,10 +10,14 @@ import { Copy, Dna, Fire, FireAlt } from "styled-icons/fa-solid";
 import { Discord, FilePaper, Twitter } from "styled-icons/remix-fill";
 import { motion } from "framer-motion";
 import { DiscordAlt } from "styled-icons/boxicons-logos";
+import { Money } from "styled-icons/boxicons-regular";
+import { Nuclear } from "styled-icons/ionicons-sharp";
 
 function Front() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
   const [logs, setLogs] = useState();
+  const [realLength, setRealLength] = useState(0);
+  const [successLength, setSuccessLength] = useState(0);
   /*
   const [currentNetwork, setCurrentNetwork] = useState(null);
   var actualBlock = null;
@@ -52,39 +56,66 @@ function Front() {
   }, []);
 
   async function fetchLogs() {
-    const result = fetch(
-      "https://deep-index.moralis.io/api/v2/0xEE644815E2693c7b2e5230ad924d127546C43207?chain=eth"
-    )
-      .then((e) => {
-        e.json();
-      })
-      .then((e) => {
-        return e;
-      });
-    setLogs(result);
+    const result = await fetch("https://mutants.0day.love/graphql", {
+      headers: {
+        accept: "application/json",
+        "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+        "cache-control": "no-cache",
+        "content-type": "application/json",
+        pragma: "no-cache",
+        "sec-ch-ua":
+          '" Not A;Brand";v="99", "Chromium";v="102", "Google Chrome";v="102"',
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": '"Windows"',
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-origin",
+      },
+      referrer:
+        "https://mutants.0day.love/graphiql?query=%7B%0A%20%20get_all_extractions(sort_by%3A%22DESC%22)%7B%0A%20%20%20%20id%0A%20%20%20%20mutantId%0A%20%20%20%20mutantTier%0A%20%20%20%20boostId%0A%20%20%20%20start_date%0A%20%20%20%20complete_date%0A%20%20%20%20result%0A%20%20%7D%0A%7D",
+      referrerPolicy: "strict-origin-when-cross-origin",
+      body: '{"query":"{\\n  get_all_extractions(sort_by:\\"DESC\\"){\\n    id\\n    mutantId\\n    mutantTier\\n    boostId\\n    start_date\\n    complete_date\\n    result\\n  }\\n}","variables":null}',
+      method: "POST",
+      mode: "cors",
+      credentials: "omit",
+    }).then((e) => {
+      return e.json();
+    });
+    let counter1 = 0;
+    let counter2 = 0;
+    setLogs(result.data.get_all_extractions);
+    for (let i = 0; i < result.data.get_all_extractions.length; i++) {
+      counter1++;
+      if (result.data.get_all_extractions[i].result == 1) {
+        counter2++;
+      }
+    }
+    setRealLength(counter1);
+    setSuccessLength(counter2);
   }
 
-  function CopyText(info) {
-    navigator.clipboard.writeText(info);
-  }
+  function CopyText(info) {}
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyles />
       <div className="App mx-auto relative">
-        <div className="absolute top-5 right-5 z-10 space-x-5">
-          <a href="https://t.co/KW5vsm0pVN">
-            <DiscordAlt className="w-8" />
+        <div className="absolute top-5 right-5 z-10 space-x-5 flex flex-row gamer align-middle">
+          <p className="my-auto">Follow KaijuKingz - </p>
+          <a href="https://t.co/KW5vsm0pVN" target={"_blank"}>
+            <DiscordAlt className="w-8 " />
           </a>
-          <a href="https://twitter.com/kaijukingz">
+          <a href="https://twitter.com/kaijukingz" target={"_blank"}>
             <Twitter className="w-8" />
           </a>
         </div>
         <header className="mx-auto">
           <div className="title px-5 align-middle">
             {/* <img src={logo} className="w-[80px]" alt="logo" /> */}
-            <p className="lg:text-6xl text-[3vw] gamer tracking-widest mt-[60px] text-white my-auto py-2 px-4 rounded-sm absolute z-10 lg:top-[180px] top-[10vw] right-0 left-0">
-              Mutant Kaiju <br /> Extraction Logs
+            <p className="lg:text-6xl text-[3vw] gamer tracking-widest mt-[60px] text-white my-auto py-2 px-4 rounded-sm absolute z-10 lg:top-[160px] top-[9vw] right-0 left-0">
+              Mutant Kaiju <br />
+              <div className="w-1/2 bg-[#ffffff93] h-[3px] mx-auto my-3 rounded-xl" />{" "}
+              Extraction Logs
             </p>
           </div>
           <div className="options">
@@ -105,28 +136,36 @@ function Front() {
           <img src={Reactor} />
           <p className="absolute right-2 bottom-2 gamer tracking-wide text-[#ffffff80] lg:text-sm text-[9px]">
             {" "}
-            © 2021 KAIJUKINGZ ALL RIGHTS RESERVED.
+            © 2021 KAIJUKINGZ
           </p>
         </div>
 
-        <div className="mt-[70px]">
-          <div className="p-5 h-screen">
+        <div className="mt-[70px] pb-[50px]">
+          <div className="lg:p-5 p-2">
             <div className="w-full rounded-sm lg:text-4xl gamer flex mb-10 tracking-widest text-[#2C9370] flex-col text-left">
-              <p className="z-10 mb-6">Statistics:</p>
+              <p className="z-10 mb-6 retro uppercase font-bold">Statistics:</p>
               <div className="flex flex-row space-x-8 ml-5">
                 <div className="flex-col space-y-3">
                   <p className="z-10 lg:text-xl text-sm text-white space-x-3">
                     {" "}
                     <FilePaper className="w-4" />
-                    <span>1502</span>
+                    <span>{realLength}</span>
                   </p>
                   <p className="z-10 lg:text-xl text-sm text-white space-x-3">
                     <Dna className="w-4" />
-                    <span>689</span>
+                    <span>{successLength}</span>
+                  </p>
+                  <p className="z-10 lg:text-xl text-sm text-white space-x-3">
+                    <Money className="w-4" />
+                    <span>23407</span>
                   </p>
                   <p className="z-10 lg:text-xl text-sm text-white space-x-3">
                     <FireAlt className="w-4" />
-                    <span>23407</span>
+                    <span>5024</span>
+                  </p>
+                  <p className="z-10 lg:text-xl text-sm text-white space-x-3">
+                    <Nuclear className="w-4" />
+                    <span>1424</span>
                   </p>
                 </div>
                 <div className="flex-col space-y-3">
@@ -134,74 +173,58 @@ function Front() {
                     <span>Total Attempts</span>
                   </p>
                   <p className="z-10 lg:text-xl text-sm text-white space-x-3">
-                    <span>Mutants extracted</span>
+                    <span>DNA extracted</span>
+                  </p>
+                  <p className="z-10 lg:text-xl text-sm text-white space-x-3">
+                    <span>$Scales spent</span>
                   </p>
                   <p className="z-10 lg:text-xl text-sm text-white space-x-3">
                     <span>$Scales burnt</span>
+                  </p>
+                  <p className="z-10 lg:text-xl text-sm text-white space-x-3">
+                    <span>$RWaste used on boosts</span>
                   </p>
                 </div>
               </div>
             </div>
             <div className="rounded-sm lg:text-4xl gamer flex tracking-widest text-[#2C9370] flex-col">
-              <p className="z-10 text-left">Recent extractions: </p>
+              <p className="z-10 text-left retro uppercase font-bold">
+                Recent extractions:{" "}
+              </p>
 
-              <ul className=" z-10 px-5 mt-4 space-y-10 lg:columns-2 flex-col">
-                <li className="z-10 gamer relative text-sm text-white text-left bg-[#00000093] outline outline-1 outline-gray-500 p-5 rounded-sm space-y-4 ">
-                  <p>User: 0xb7ca98b7a09cb87e0987f</p>
-                  <p>Mutant LVL: 3</p>
-                  <p>Success Chance: 20%</p>
-                  <p>
-                    Outcome: <span className="text-green-500">SUCCESS</span>{" "}
-                  </p>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-4 absolute top-1 right-5 cursor-pointer"
-                  >
-                    <Copy onClick={CopyText("0xb7ca98b7a09cb87e0987f")} />
-                  </motion.div>
-                </li>
-                <li className="z-10 gamer relative text-sm text-white text-left bg-[#00000093] outline outline-1 outline-gray-500 p-5 rounded-sm space-y-4 flex-none ">
-                  <p>User: 0xb7ca98b7a09cb87e0987f</p>
-                  <p>Mutant LVL: 3</p>
-                  <p>Success Chance: 20%</p>
-                  <p>
-                    Outcome: <span className="text-green-500">SUCCESS</span>{" "}
-                  </p>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-4 absolute top-1 right-5 cursor-pointer"
-                  >
-                    <Copy onClick={CopyText("0xb7ca98b7a09cb87e0987f")} />
-                  </motion.div>
-                </li>
-                <li className="z-10 gamer relative text-sm text-white text-left bg-[#00000093] outline outline-1 outline-gray-500 p-5 rounded-sm space-y-4 flex-none ">
-                  <p>User: 0xb7ca98b7a09cb87e0987f</p>
-                  <p>Mutant LVL: 3</p>
-                  <p>Success Chance: 20%</p>
-                  <p>
-                    Outcome: <span className="text-green-500">SUCCESS</span>{" "}
-                  </p>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-4 absolute top-1 right-5 cursor-pointer"
-                  >
-                    <Copy onClick={CopyText("0xb7ca98b7a09cb87e0987f")} />
-                  </motion.div>
-                </li>
-                <li className="z-10 gamer relative text-sm text-white text-left bg-[#00000093] outline outline-1 outline-gray-500 p-5 rounded-sm space-y-4 flex-none ">
-                  <p>User: 0xb7ca98b7a09cb87e0987f</p>
-                  <p>Mutant LVL: 3</p>
-                  <p>Success Chance: 20%</p>
-                  <p>
-                    Outcome: <span className="text-green-500">SUCCESS</span>{" "}
-                  </p>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-4 absolute top-1 right-5 cursor-pointer"
-                  >
-                    <Copy onClick={CopyText("0xb7ca98b7a09cb87e0987f")} />
-                  </motion.div>
-                </li>
+              <ul className=" z-10 lg:px-5 px-1 mt-8 space-y-10 lg:columns-2 flex-col">
+                {logs ? (
+                  logs?.map((e) => {
+                    if (e.result !== null) {
+                      return (
+                        <li className="z-10 gamer relative text-sm text-white text-left bg-[#00000093] outline outline-1 outline-gray-500 p-5 rounded-sm space-y-4 ">
+                          <p>User: 0xb7ca98b7a09cb87e0987f</p>
+                          <p>Mutant LVL: {e.mutantTier}</p>
+                          <p>Success Chance: 20%</p>
+                          <p>
+                            Outcome:{" "}
+                            {e.result === 1 ? (
+                              <span className="text-green-500">SUCCESS</span>
+                            ) : (
+                              <span className="text-red-500">FAILURE</span>
+                            )}
+                          </p>
+                          <p>Complete date: {e.complete_date}</p>
+                          <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            className="w-4 absolute top-1 right-5 cursor-pointer"
+                          >
+                            <Copy
+                              onClick={CopyText("0xb7ca98b7a09cb87e0987f")}
+                            />
+                          </motion.div>
+                        </li>
+                      );
+                    }
+                  })
+                ) : (
+                  <></>
+                )}
               </ul>
             </div>
           </div>

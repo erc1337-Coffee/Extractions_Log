@@ -1,10 +1,3 @@
-html,
-body,
-body > div,
-body > div > div {
-  background-color: black;
-}
-
 @font-face {
   font-family: "perfect-dos";
   src: url("./Perfect DOS VGA 437.woff2") format("woff2"),
@@ -124,4 +117,7 @@ body > div > div {
 
 .content_stats {
   height: 10vh;
+}
+.retro {
+  font-family: "retro-gaming";
 }
