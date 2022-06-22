@@ -113,8 +113,8 @@ function Front() {
           <div className="title px-5 align-middle">
             {/* <img src={logo} className="w-[80px]" alt="logo" /> */}
             <p className="lg:text-6xl text-[3vw] gamer tracking-widest mt-[60px] text-white my-auto py-2 px-4 rounded-sm absolute z-10 lg:top-[160px] top-[9vw] right-0 left-0">
-              Mutant Kaiju <br />
-              <div className="w-1/2 bg-[#ffffff93] h-[3px] mx-auto my-3 rounded-xl" />{" "}
+              Kaiju DNA <br />
+              <div className="w-1/2 bg-[#ffffff93] h-[2px] mx-auto my-3 rounded-xl uppercase" />{" "}
               Extraction Logs
             </p>
           </div>
@@ -142,10 +142,10 @@ function Front() {
 
         <div className="mt-[70px] pb-[50px]">
           <div className="lg:p-5 p-2">
-            <div className="w-full rounded-sm lg:text-4xl gamer flex mb-10 tracking-widest text-[#2C9370] flex-col text-left">
-              <p className="z-10 mb-6 retro uppercase font-bold">Statistics:</p>
+            <div className="w-full rounded-sm lg:text-4xl retro uppercase flex mb-10 tracking-widest text-[#2C9370] flex-col text-left">
+              <p className="z-10 mb-6 gamer uppercase font-bold">Statistics:</p>
               <div className="flex flex-row space-x-8 ml-5">
-                <div className="flex-col space-y-3">
+                <div className="flex-col space-y-3 align-middle">
                   <p className="z-10 lg:text-xl text-sm text-white space-x-3">
                     {" "}
                     <FilePaper className="w-4" />
@@ -188,7 +188,7 @@ function Front() {
               </div>
             </div>
             <div className="rounded-sm lg:text-4xl gamer flex tracking-widest text-[#2C9370] flex-col">
-              <p className="z-10 text-left retro uppercase font-bold">
+              <p className="z-10 text-left gamer uppercase font-bold">
                 Recent extractions:{" "}
               </p>
 
@@ -197,7 +197,8 @@ function Front() {
                   logs?.map((e) => {
                     if (e.result !== null) {
                       return (
-                        <li className="z-10 gamer relative text-sm text-white text-left bg-[#00000093] outline outline-1 outline-gray-500 p-5 rounded-sm space-y-4 ">
+                        <li className="z-10 retro font-bold uppercase relative text-xs text-white text-left bg-[#00000093] outline outline-1 outline-gray-500 p-5 rounded-sm space-y-4 ">
+                          <p>0xb7ca98b7a09a2b3efeab3f3efabf3ef3eab</p>
                           <p>User: 0xb7ca98b7a09cb87e0987f</p>
                           <p>Mutant LVL: {e.mutantTier}</p>
                           <p>Success Chance: 20%</p>
@@ -209,15 +210,7 @@ function Front() {
                               <span className="text-red-500">FAILURE</span>
                             )}
                           </p>
-                          <p>Complete date: {e.complete_date}</p>
-                          <motion.div
-                            whileHover={{ scale: 1.1 }}
-                            className="w-4 absolute top-1 right-5 cursor-pointer"
-                          >
-                            <Copy
-                              onClick={CopyText("0xb7ca98b7a09cb87e0987f")}
-                            />
-                          </motion.div>
+                          <p>Extraction timestamp: {e.complete_date}</p>
                         </li>
                       );
                     }
