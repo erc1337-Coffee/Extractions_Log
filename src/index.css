@@ -4,12 +4,7 @@
 
 @font-face {
   font-family: "KaijuKingz";
-  src: "./KaijuKingz.5c7a5ce9.ttf";
-}
-
-@font-face {
-  font-family: "Thaleah";
-  src: "./ThaleahFat.72f05237.ttf";
+  src: "./KaijuKingz.5c7a5ce9.woff" format("woff");
 }
 
 body {
@@ -29,7 +24,7 @@ code {
 }
 
 .gamer {
-  font-family: "KaijuKingz", source-code-pro, Menlo, Monaco, Consolas,
+  font-family: "KaijuKingz", "retro-gaming", Menlo, Monaco, Consolas,
     "Courier New";
 }
 

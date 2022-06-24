@@ -228,7 +228,7 @@ function Front() {
         </div>
         <header className="mx-auto">
           <div className="title px-5 align-middle">
-            <div className="lg:text-6xl text-[3vw] gamer tracking-widest mt-[60px] text-white my-auto py-2 px-4 rounded-sm absolute z-10 lg:top-[160px] top-[9vw] right-0 left-0">
+            <div className="lg:text-6xl text-[3vw] uppercase gamer tracking-widest mt-[60px] text-white my-auto py-2 px-4 rounded-sm absolute z-10 lg:top-[160px] top-[9vw] right-0 left-0">
               Kaiju DNA <br />
               <div className="w-1/2 bg-[#ffffff93] h-[2px] mx-auto my-3 rounded-xl uppercase" />{" "}
               Extraction Logs
