@@ -159,6 +159,7 @@ function Front() {
     const imgSrc = document.getElementById("searchKaiju");
     imgSrc.src = loading;
     if (input.value > 0 && input.value <= 3700 && input.value != "") {
+      setMenuVisible(true);
       const meta = await FetchMetadata(input.value);
       const mutantInfo = await dnaContract.mutantInfo(input.value);
       const newObj = {
@@ -168,7 +169,6 @@ function Front() {
       };
       imgSrc.src = meta.image;
       setFetchedKaiju(newObj);
-      setMenuVisible(true);
     }
   }
 
@@ -261,44 +261,29 @@ function Front() {
             <div className="w-full rounded-sm lg:text-4xl retro uppercase flex mb-10 tracking-widest text-[#2C9370] flex-col text-left">
               <p className="z-10 mb-6 gamer uppercase font-bold">Statistics:</p>
               <div className="flex flex-row ml-5 relative">
-                <div className="flex-col space-y-3 align-middle">
-                  <div className="z-10 lg:text-xl text-xs text-white space-x-3 flex flex-row">
+                <div className="flex-col space-y-3 align-middle flex">
+                  <div className="z-10 lg:text-xl text-sm text-white space-x-3 flex flex-row">
                     {" "}
                     <FilePaper className="w-4" />
-                    <p>{realLength}</p>
+                    <p>{realLength} Total Attempts</p>
                   </div>
-                  <div className="z-10 lg:text-xl text-xs text-white space-x-3 flex flex-row">
+                  <div className="z-10 lg:text-xl text-sm text-white space-x-3 flex flex-row">
                     <Dna className="w-4" />
-                    <p>{successLength}</p>
+                    <p>{successLength} DNA successfully extracted</p>
                   </div>
-                  <div className="z-10 lg:text-xl text-xs text-white space-x-3 flex flex-row">
+                  <div className="z-10 lg:text-xl text-sm text-white space-x-3 flex flex-row">
                     <Money className="w-4" />
-                    <p>{realLength > 0 ? realLength * 600 : "-"}</p>
+                    <p>
+                      {realLength > 0 ? realLength * 600 : "-"} $Scales spent
+                    </p>
                   </div>
-                  <div className="z-10 lg:text-xl text-xs text-white space-x-3  flex flex-row">
+                  <div className="z-10 lg:text-xl text-sm text-white space-x-3  flex flex-row">
                     <Lab className="w-4 my-auto" />
-                    <p>{stolenScales}</p>
+                    <p>{stolenScales} $Scales sent to scientists</p>
                   </div>
-                  <div className="z-10 lg:text-xl text-xs text-white space-x-3 flex flex-row">
+                  <div className="z-10 lg:text-xl text-sm text-white space-x-3 flex flex-row">
                     <Nuclear className="w-4" />
-                    <p>{rwasteUsed}</p>
-                  </div>
-                </div>
-                <div className="flex-col space-y-3 absolute lg:left-[200px] left-[110px]">
-                  <div className="z-10 lg:text-xl text-xs text-white ">
-                    <p>Total Attempts</p>
-                  </div>
-                  <div className="z-10 lg:text-xl text-xs text-white ">
-                    <p>DNA extracted</p>
-                  </div>
-                  <div className="z-10 lg:text-xl text-xs text-white ">
-                    <p>$Scales spent on extractions</p>
-                  </div>
-                  <div className="z-10 lg:text-xl text-xs text-white ">
-                    <p>$Scales sent to scientists</p>
-                  </div>
-                  <div className="z-10 lg:text-xl text-xs text-white ">
-                    <p>$RWaste used on boosts</p>
+                    <p>{rwasteUsed} $RWaste used on boosts</p>
                   </div>
                 </div>
               </div>
@@ -383,7 +368,7 @@ function Front() {
                           </div>
                           <RightArrowAlt className="md:w-[100px] w-[70px] mx-auto" />
                           {e.result == 1 ? (
-                            <div className="relative md:w-[200px] w-[110px] mx-auto">
+                            <div className="relative md:w-[200px] md:h-[200px] w-[110px] h-[110px] mx-auto">
                               <motion.button
                                 className="w-[8vw] h-[8vw] lg:w-1/4 lg:h-1/4 bg-black outline outline-1 rounded-full absolute top-2 left-2 cursor-pointer"
                                 whileHover={{ scale: 1.1 }}
@@ -400,7 +385,7 @@ function Front() {
                               />
                             </div>
                           ) : (
-                            <div className="relative md:w-[200px] w-[110px]  mx-auto">
+                            <div className="relative md:w-[200px] md:h-[200px] w-[110px] h-[110px]  mx-auto">
                               <img
                                 alt={"kaiju dna " + e.mutantId}
                                 src={failureImg}
