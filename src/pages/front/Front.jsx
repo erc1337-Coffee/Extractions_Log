@@ -8,14 +8,13 @@ import { FilePaper, Twitter } from "styled-icons/remix-fill";
 import { motion } from "framer-motion";
 import { DiscordAlt } from "styled-icons/boxicons-logos";
 import { Money } from "styled-icons/boxicons-regular";
-import { Exit, Nuclear } from "styled-icons/ionicons-sharp";
+import { Nuclear } from "styled-icons/ionicons-sharp";
 import loading from "../../Infinite.gif";
 import loadingPH from "../../InfinitePH.png";
 import failureImg from "../../failureImg.png";
 import { Refresh } from "styled-icons/evil";
 import { CancelCircle, Lab } from "styled-icons/icomoon";
 import { RightArrowAlt } from "styled-icons/boxicons-solid";
-import { Cancel } from "styled-icons/material";
 
 function Front() {
   const [logs, setLogs] = useState();
@@ -159,10 +158,9 @@ function Front() {
     const input = document.getElementById("searchBar");
     const imgSrc = document.getElementById("searchKaiju");
     imgSrc.src = loading;
-    if (input.value >= 0 && input.value <= 3700 && input.value != "") {
+    if (input.value > 0 && input.value <= 3700 && input.value != "") {
       const meta = await FetchMetadata(input.value);
       const mutantInfo = await dnaContract.mutantInfo(input.value);
-      console.log(mutantInfo);
       const newObj = {
         id: meta.tokenId,
         ongoing: mutantInfo[3].toString(),
@@ -170,8 +168,8 @@ function Front() {
       };
       imgSrc.src = meta.image;
       setFetchedKaiju(newObj);
+      setMenuVisible(true);
     }
-    setMenuVisible(true);
   }
 
   return (
@@ -186,14 +184,14 @@ function Front() {
           </a>
         </div>
         <div className="absolute top-5 left-5 z-20 space-x-5 flex gamer align-middle ">
-          <div className="w-[250px] bg-white rounded-sm h-8 outline outline-1 flex uppercase p-1">
+          <div className="sm:w-[250px] w-1/2 bg-white rounded-sm h-8 outline outline-1 flex uppercase p-1">
             <input
               className="w-5/6 ml-2 mt-[2px] outline-none text-xl uppercase"
-              placeholder="mutant ID"
+              placeholder="#id"
               id="searchBar"
             />
             <motion.button
-              className="bg-black outline outline-1 outline-white text-white w-1/6 rounded-sm text-lg"
+              className="bg-black outline outline-1 outline-white text-white w-2/6 rounded-sm text-xs sm:text-lg"
               onClick={() => processSearch()}
             >
               GO
@@ -306,7 +304,7 @@ function Front() {
               </div>
             </div>
             <div className="rounded-sm lg:text-4xl gamer flex tracking-widest text-[#2C9370] flex-col">
-              <p className="z-10 text-left gamer uppercase font-bold">
+              <p className="z-10 text-left gamer uppercase font-bold mt-10">
                 Recent extractions:{" "}
               </p>
 
@@ -362,7 +360,7 @@ function Front() {
                             : ""}
                         </p>
                         <div className="flex">
-                          <div className="relative md:w-[200px] md:h-[200px] w-[130px] h-[130px] mx-auto">
+                          <div className="relative md:w-[200px] md:h-[200px] w-[110px] h-[130px] mx-auto">
                             <motion.button
                               className="w-[8vw] h-[8vw] lg:w-1/4 lg:h-1/4 bg-black outline outline-1 rounded-full absolute top-2 left-2 cursor-pointer"
                               whileHover={{ scale: 1.1 }}
@@ -370,7 +368,7 @@ function Front() {
                               <Refresh onClick={() => FetchPhoto(e.mutantId)} />
                             </motion.button>
 
-                            <p className="absolute bottom-2 right-2 text-white bg-black text-sm px-2 py-1 rounded-sm outline outline-1">
+                            <p className="absolute bottom-2 right-2 text-white bg-black text-xs px-2 py-1 rounded-sm outline outline-1">
                               TIER:{" "}
                               {e.mutantTier === 6
                                 ? "S"
@@ -385,7 +383,7 @@ function Front() {
                           </div>
                           <RightArrowAlt className="md:w-[100px] w-[70px] mx-auto" />
                           {e.result == 1 ? (
-                            <div className="relative md:w-[200px] w-[130px] mx-auto">
+                            <div className="relative md:w-[200px] w-[110px] mx-auto">
                               <motion.button
                                 className="w-[8vw] h-[8vw] lg:w-1/4 lg:h-1/4 bg-black outline outline-1 rounded-full absolute top-2 left-2 cursor-pointer"
                                 whileHover={{ scale: 1.1 }}
@@ -402,7 +400,7 @@ function Front() {
                               />
                             </div>
                           ) : (
-                            <div className="relative md:w-[200px] w-[130px] mx-auto">
+                            <div className="relative md:w-[200px] w-[110px]  mx-auto">
                               <img
                                 alt={"kaiju dna " + e.mutantId}
                                 src={failureImg}
