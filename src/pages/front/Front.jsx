@@ -350,7 +350,10 @@ function Front() {
                               className="w-[8vw] h-[8vw] lg:w-1/4 lg:h-1/4 bg-black outline outline-1 rounded-full absolute top-2 left-2 cursor-pointer"
                               whileHover={{ scale: 1.1 }}
                             >
-                              <Refresh onClick={() => FetchPhoto(e.mutantId)} />
+                              <Refresh
+                                onClick={() => FetchPhoto(e.mutantId)}
+                                className="outline-none"
+                              />
                             </motion.button>
 
                             <p className="absolute bottom-2 right-2 text-white bg-black text-xs px-2 py-1 rounded-sm outline outline-1">
@@ -368,12 +371,13 @@ function Front() {
                           </div>
                           <RightArrowAlt className="md:w-[100px] w-[70px] mx-auto" />
                           {e.result == 1 ? (
-                            <div className="relative md:w-[200px] md:h-[200px] w-[110px] h-[110px] mx-auto">
+                            <div className="relative md:w-[200px] md:h-[200px] w-[110px] h-[110px] mx-auto outline-none">
                               <motion.button
-                                className="w-[8vw] h-[8vw] lg:w-1/4 lg:h-1/4 bg-black outline outline-1 rounded-full absolute top-2 left-2 cursor-pointer"
+                                className="w-[8vw] h-[8vw] lg:w-1/4 lg:h-1/4 bg-black outline outline-1 rounded-full absolute top-2 left-2 cursor-pointer outline-none"
                                 whileHover={{ scale: 1.1 }}
                               >
                                 <Refresh
+                                  className="outline-none"
                                   onClick={() => FetchDNA(e.tx, e.mutantId)}
                                 />
                               </motion.button>
@@ -405,11 +409,29 @@ function Front() {
             </div>
           </div>
         </div>
-        <footer className="bg-[#000000] fixed bottom-0 max-w-[1300px] lg:text-sm text-xs py-2 z-20 px-3 justify-center gamer tracking-widest text-white">
+        <footer className="bg-[#000000] fixed bottom-0 max-w-[1300px] lg:text-sm text-[10px] py-2 z-20 px-3 justify-center gamer tracking-widest text-white">
           This website is not affiliated with Augminted Labs, it's a fan-made
-          tool created by -<span className="italic">Haruxe</span>- and -
-          <span className="italic">Coffee & Weed </span>- for the KaijuKingz
-          community.
+          tool created by -
+          <span className="italic">
+            <a
+              href="https://twitter.com/haruxeETH"
+              target={"_blank"}
+              className="text-green-600"
+            >
+              Haruxe
+            </a>
+          </span>
+          - and -
+          <span className="italic">
+            <a
+              href="https://twitter.com/erc1337_Coffee"
+              target={"_blank"}
+              className="text-green-600"
+            >
+              Coffee & Weed{" "}
+            </a>
+          </span>
+          - for the KaijuKingz community.
         </footer>
       </div>
     </>
